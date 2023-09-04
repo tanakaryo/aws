@@ -4,3 +4,4 @@
  - resource: ec2, loadbalancer
 
 ## Architecture
+![image](img/ALBwithEC2.jpg)
