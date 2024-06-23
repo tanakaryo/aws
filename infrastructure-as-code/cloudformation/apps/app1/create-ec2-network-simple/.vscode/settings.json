@@ -1,0 +1,5 @@
+{
+    "yaml.schemas": {
+        "https://raw.githubusercontent.com/aws/serverless-application-model/main/samtranslator/schema/schema.json": "file:///Users/yoichiikegawa/Documents/Github/aws/infrastructure-as-code/cloudformation/apps/app1/create-ec2-network-simple/template.yaml"
+    }
+}
