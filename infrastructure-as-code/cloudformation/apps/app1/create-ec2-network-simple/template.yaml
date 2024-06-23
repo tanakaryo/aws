@@ -1,0 +1,53 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Simple Template
+
+## Parameters
+Parameters:
+     InstanceType:
+       Description: EC2 Instance Types.
+       Type: String
+       Default: t2.micro
+       AllowedValues:
+            - t2.micro
+            - t2.small
+            - t2.medium
+
+## Resources.
+### vpc
+Resources:
+  simpleVpc:
+     Type: AWS::EC2::VPC
+     Properties:
+       CidrBlock: '192.168.0.0/16'
+       Tags:
+            - Key: 'Name'
+              Value: 'simple-vpc'
+
+### subnet
+  simpleSubnet:
+      Type: AWS::EC2::Subnet
+      Properties:
+        CidrBlock: '192.168.1.0/24'
+        MapPublicIpOnLaunch: false
+        Tags:
+          - Key: 'Name'
+            Value: 'simple-subnet'
+        VpcId: !Ref simpleVpc
+      
+### ec2
+  simpleEC2Instance:
+      Type: AWS::EC2::Instance
+      Properties:
+        SubnetId: !Ref simpleSubnet
+        ImageId: "ami-0595d6e81396a9efb"
+        InstanceType: !Ref InstanceType
+        BlockDeviceMappings:
+          - DeviceName: '/dev/xvda'
+            Ebs:
+              VolumeType: 'gp2'
+              VolumeSize: 8
+        Tags:
+             - Value: 'simple-ec2-instance'
+               Key: 'Name'
+
+     
